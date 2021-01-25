@@ -1,18 +1,29 @@
 import React from 'react';
-import {StyleSheet, Text, SafeAreaView, Button, Alert, Platform, StatusBar} from 'react-native';
+import {
+  Dimensions,
+  StyleSheet,
+  Text,
+  SafeAreaView,
+  Button,
+  Alert,
+  Platform,
+  StatusBar,
+  View,
+} from 'react-native';
+
+// Gir oss riktige dimensjoner på skjerm etter om det er portrait/landscape
+import {useDimensions, useDeviceOrientation} from '@react-native-community/hooks';
 
 export default function App() {
-  const names = ['Stefaen', 'Mettus', 'Ben Kåre', 'Nusse'];
+  const {landscape, portrait} = useDeviceOrientation;
 
   return (
     // Kan sende inn array med styler {[styles.contantainer, styles.containerTwo]}
     // Blir likt som å gi en komponent flere klasser
     <SafeAreaView style={styles.container}>
-      <Button
-        title="Click me"
-        color="blue"
-        onPress={() => Alert.prompt('My title', 'My message', text => console.log(text))}
-      />
+      <View
+        style={{backgroundColor: 'blue', width: '100%', height: portrait ? '100%' : '30%'}}
+      ></View>
     </SafeAreaView>
   );
 }
@@ -21,7 +32,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1, // Vil fylle hele skjermen
-    backgroundColor: 'orange',
+    backgroundColor: 'white',
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight + 20 : 0,
   },
 });
