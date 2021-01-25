@@ -1,31 +1,27 @@
-import {StatusBar} from 'expo-status-bar';
 import React from 'react';
-import {StyleSheet, Text, SafeAreaView, Button, Alert} from 'react-native';
+import {StyleSheet, Text, SafeAreaView, Button, Alert, Platform, StatusBar} from 'react-native';
 
 export default function App() {
   const names = ['Stefaen', 'Mettus', 'Ben Kåre', 'Nusse'];
 
   return (
+    // Kan sende inn array med styler {[styles.contantainer, styles.containerTwo]}
+    // Blir likt som å gi en komponent flere klasser
     <SafeAreaView style={styles.container}>
       <Button
         title="Click me"
-        color="orange"
-        onPress={() =>
-          Alert.alert('My title', 'My message', [
-            {text: 'yes', onPress: () => console.log('Yes')},
-            {text: 'No', onPress: () => console.log('No')},
-          ])
-        }
+        color="blue"
+        onPress={() => Alert.prompt('My title', 'My message', text => console.log(text))}
       />
     </SafeAreaView>
   );
 }
 
+// benytter StyleSheet.create for å få validering
 const styles = StyleSheet.create({
   container: {
     flex: 1, // Vil fylle hele skjermen
-    backgroundColor: 'grey',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: 'orange',
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight + 20 : 0,
   },
 });
