@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Image, ImageBackground, Text, StyleSheet} from 'react-native';
 import theme from '../../assets/theme';
 
-export default function Login() {
+const Login = () => {
   return (
     <ImageBackground source={require('../../assets/booksstart.jpg')} style={styles.background}>
       <View style={styles.logoWrapper}>
@@ -13,11 +13,11 @@ export default function Login() {
       <View style={styles.registerButton} />
     </ImageBackground>
   );
-}
+};
 
 const styles = StyleSheet.create({
   background: {
-    backgroundColor: '#fff',
+    backgroundColor: theme.colors.white,
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'flex-end',
@@ -26,3 +26,5 @@ const styles = StyleSheet.create({
   loginButton: {backgroundColor: theme.colors.primary, width: '100%', height: 80},
   registerButton: {backgroundColor: theme.colors.light, width: '100%', height: 80},
 });
+
+export default Login;

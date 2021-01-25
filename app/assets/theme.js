@@ -6,6 +6,8 @@ const theme = {
     lightBrown: '#dda15e',
     brown: '#dda15e',
     orange: '#f6990d',
+    black: '#000',
+    white: '#fff',
   },
   fontFamily: '"Questrial", Helvetica, sans-serif',
 };

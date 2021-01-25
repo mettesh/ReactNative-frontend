@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Image, SafeAreaView, StyleSheet} from 'react-native';
 import theme from '../../assets/theme';
 
-export default function StartPage() {
+const StartPage = () => {
   return (
     <SafeAreaView style={styles.mainWrapper}>
       <View style={styles.navWrapper}>
@@ -17,10 +17,10 @@ export default function StartPage() {
       />
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  mainWrapper: {backgroundColor: '#000', flex: 1},
+  mainWrapper: {backgroundColor: theme.colors.black, flex: 1},
   navWrapper: {
     flex: 1,
     flexDirection: 'row',
@@ -30,3 +30,5 @@ const styles = StyleSheet.create({
   deleteIcon: {width: 40, height: 40, right: 20},
   image: {width: '100%', height: '70%', bottom: 100},
 });
+
+export default StartPage;
