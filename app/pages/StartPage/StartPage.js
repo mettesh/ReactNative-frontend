@@ -1,8 +1,8 @@
 import React from 'react';
-import {View, ScrollView, SafeAreaView, StyleSheet, Text} from 'react-native';
+import {View, ScrollView, SafeAreaView, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import theme from '../../assets/theme';
 
-const StartPage = () => {
+const StartPage = ({navigation}) => {
   const books = [
     {
       title: 'Bok 1',
@@ -10,134 +10,131 @@ const StartPage = () => {
       reviews: 300,
       view_rating: 4.5,
       year: 2009,
-      gender: 'Fiction',
+      genre: 'Fiction',
     },
     {
-      title: 'Bok 1',
+      title: 'Bok 2',
       author: 'Hans Hansen',
       reviews: 300,
       view_rating: 4.5,
       year: 2009,
-      gender: 'Fiction',
+      genre: 'Fiction',
     },
     {
-      title: 'Bok 1',
+      title: 'Bok 3',
       author: 'Hans Hansen',
       reviews: 300,
       view_rating: 4.5,
       year: 2009,
-      gender: 'Fiction',
+      genre: 'Fiction',
     },
     {
-      title: 'Bok 1',
+      title: 'Bok 4',
       author: 'Hans Hansen',
       reviews: 300,
       view_rating: 4.5,
       year: 2009,
-      gender: 'Fiction',
+      genre: 'Fiction',
     },
     {
-      title: 'Bok 1',
+      title: 'Bok 5',
       author: 'Hans Hansen',
       reviews: 300,
       view_rating: 4.5,
       year: 2009,
-      gender: 'Fiction',
+      genre: 'Fiction',
     },
     {
-      title: 'Bok 1',
+      title: 'Bok 6',
       author: 'Hans Hansen',
       reviews: 300,
       view_rating: 4.5,
       year: 2009,
-      gender: 'Fiction',
+      genre: 'Fiction',
     },
     {
-      title: 'Bok 1',
+      title: 'Bok 7',
       author: 'Hans Hansen',
       reviews: 300,
       view_rating: 4.5,
       year: 2009,
-      gender: 'Fiction',
+      genre: 'Fiction',
     },
     {
-      title: 'Bok 1',
+      title: 'Bok 8',
       author: 'Hans Hansen',
       reviews: 300,
       view_rating: 4.5,
       year: 2009,
-      gender: 'Fiction',
+      genre: 'Fiction',
     },
     {
-      title: 'Bok 1',
+      title: 'Bok 9',
       author: 'Hans Hansen',
       reviews: 300,
       view_rating: 4.5,
       year: 2009,
-      gender: 'Fiction',
+      genre: 'Fiction',
     },
     {
-      title: 'Bok 1',
+      title: 'Bok 10',
       author: 'Hans Hansen',
       reviews: 300,
       view_rating: 4.5,
       year: 2009,
-      gender: 'Fiction',
+      genre: 'Fiction',
     },
     {
-      title: 'Bok 1',
+      title: 'Bok 11',
       author: 'Hans Hansen',
       reviews: 300,
       view_rating: 4.5,
       year: 2009,
-      gender: 'Fiction',
+      genre: 'Fiction',
     },
     {
-      title: 'Bok 1',
+      title: 'Bok 12',
       author: 'Hans Hansen',
       reviews: 300,
       view_rating: 4.5,
       year: 2009,
-      gender: 'Fiction',
+      genre: 'Fiction',
     },
     {
-      title: 'Bok 1',
+      title: 'Bok 13',
       author: 'Hans Hansen',
       reviews: 300,
       view_rating: 4.5,
       year: 2009,
-      gender: 'Fiction',
+      genre: 'Fiction',
     },
     {
-      title: 'Bok 1',
+      title: 'Bok 14',
       author: 'Hans Hansen',
       reviews: 300,
       view_rating: 4.5,
       year: 2009,
-      gender: 'Fiction',
+      genre: 'Fiction',
     },
     {
-      title: 'Bok 1',
+      title: 'Bok 15',
       author: 'Hans Hansen',
       reviews: 300,
       view_rating: 4.5,
       year: 2009,
-      gender: 'Fiction',
+      genre: 'Fiction',
     },
   ];
   return (
     <SafeAreaView style={styles.mainWrapper}>
-      <View style={styles.navWrapper}>
-        <View style={[{backgroundColor: theme.colors.orange}, styles.closeIcon]} />
-        <View style={[{backgroundColor: theme.colors.lightBrown}, styles.deleteIcon]} />
-      </View>
-
       <ScrollView style={styles.scrollView}>
         {books.map(book => (
-          <View style={styles.bookContainer} key={book.title}>
-            <Text style={styles.headerText}>{book.title}</Text>
-            <Text style={styles.subHeaderText}>{book.author}</Text>
-          </View>
+          <TouchableOpacity onPress={() => navigation.navigate('Book', {book})}>
+            <View style={styles.bookContainer} key={book.title}>
+              <Text style={styles.headerText}>{book.title}</Text>
+              <Text style={styles.subHeaderText}>{book.author}</Text>
+            </View>
+          </TouchableOpacity>
         ))}
       </ScrollView>
     </SafeAreaView>
@@ -170,7 +167,6 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
     borderWidth: 2,
-    width: '100%',
     alignItems: 'center',
     borderBottomColor: theme.colors.orange,
   },

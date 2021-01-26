@@ -1,16 +1,32 @@
 import React from 'react';
-import {View, Image, ImageBackground, Text, StyleSheet} from 'react-native';
+import {
+  View,
+  Image,
+  ImageBackground,
+  Text,
+  StyleSheet,
+  Button,
+  TouchableOpacity,
+} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 import theme from '../../assets/theme';
 
-const Login = () => {
+const Login = ({navigation}) => {
   return (
     <ImageBackground source={require('../../assets/booksstart.jpg')} style={styles.background}>
       <View style={styles.logoWrapper}>
         <Image source={require('../../assets/booklogo.png')} style={{width: 150, height: 150}} />
         <Text style={{color: 'white', fontSize: 36}}>Library</Text>
       </View>
-      <View style={styles.loginButton} />
-      <View style={styles.registerButton} />
+      <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+        <View style={styles.loginButton}>
+          <Text style={styles.buttonTextLogin}>Logg inn</Text>
+        </View>
+      </TouchableOpacity>
+      <View style={styles.registerButton}>
+        <Text style={styles.buttonTextRegister}>Registrer</Text>
+      </View>
     </ImageBackground>
   );
 };
@@ -23,8 +39,26 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   logoWrapper: {flex: 3, top: 120, alignItems: 'center'},
-  loginButton: {backgroundColor: theme.colors.primary, width: '100%', height: 80},
-  registerButton: {backgroundColor: theme.colors.light, width: '100%', height: 80},
+  loginButton: {
+    backgroundColor: theme.colors.primary,
+    height: 80,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  registerButton: {
+    backgroundColor: theme.colors.light,
+    height: 80,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonTextLogin: {
+    color: theme.colors.light,
+    fontSize: 30,
+  },
+  buttonTextRegister: {
+    color: theme.colors.primary,
+    fontSize: 30,
+  },
 });
 
 export default Login;
