@@ -1,15 +1,5 @@
 import React from 'react';
-import {
-  View,
-  Image,
-  ImageBackground,
-  Text,
-  StyleSheet,
-  Button,
-  TouchableOpacity,
-} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import {View, Image, ImageBackground, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import theme from '../../assets/theme';
 
 const Login = ({navigation}) => {

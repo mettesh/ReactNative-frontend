@@ -1,141 +1,43 @@
 import React from 'react';
 import {View, ScrollView, SafeAreaView, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {useQuery, gql} from '@apollo/client';
 import theme from '../../assets/theme';
+import Error from '../../pages/Error';
+import Loading from '../../pages/Loading';
+
+const GET_ALL_BOOKS = gql`
+  query allBooks {
+    allBooks {
+      id
+      name
+      author {
+        name
+      }
+    }
+  }
+`;
 
 const StartPage = ({navigation}) => {
-  const books = [
-    {
-      title: 'Bok 1',
-      author: 'Hans Hansen',
-      reviews: 300,
-      view_rating: 4.5,
-      year: 2009,
-      genre: 'Fiction',
-    },
-    {
-      title: 'Bok 2',
-      author: 'Hans Hansen',
-      reviews: 300,
-      view_rating: 4.5,
-      year: 2009,
-      genre: 'Fiction',
-    },
-    {
-      title: 'Bok 3',
-      author: 'Hans Hansen',
-      reviews: 300,
-      view_rating: 4.5,
-      year: 2009,
-      genre: 'Fiction',
-    },
-    {
-      title: 'Bok 4',
-      author: 'Hans Hansen',
-      reviews: 300,
-      view_rating: 4.5,
-      year: 2009,
-      genre: 'Fiction',
-    },
-    {
-      title: 'Bok 5',
-      author: 'Hans Hansen',
-      reviews: 300,
-      view_rating: 4.5,
-      year: 2009,
-      genre: 'Fiction',
-    },
-    {
-      title: 'Bok 6',
-      author: 'Hans Hansen',
-      reviews: 300,
-      view_rating: 4.5,
-      year: 2009,
-      genre: 'Fiction',
-    },
-    {
-      title: 'Bok 7',
-      author: 'Hans Hansen',
-      reviews: 300,
-      view_rating: 4.5,
-      year: 2009,
-      genre: 'Fiction',
-    },
-    {
-      title: 'Bok 8',
-      author: 'Hans Hansen',
-      reviews: 300,
-      view_rating: 4.5,
-      year: 2009,
-      genre: 'Fiction',
-    },
-    {
-      title: 'Bok 9',
-      author: 'Hans Hansen',
-      reviews: 300,
-      view_rating: 4.5,
-      year: 2009,
-      genre: 'Fiction',
-    },
-    {
-      title: 'Bok 10',
-      author: 'Hans Hansen',
-      reviews: 300,
-      view_rating: 4.5,
-      year: 2009,
-      genre: 'Fiction',
-    },
-    {
-      title: 'Bok 11',
-      author: 'Hans Hansen',
-      reviews: 300,
-      view_rating: 4.5,
-      year: 2009,
-      genre: 'Fiction',
-    },
-    {
-      title: 'Bok 12',
-      author: 'Hans Hansen',
-      reviews: 300,
-      view_rating: 4.5,
-      year: 2009,
-      genre: 'Fiction',
-    },
-    {
-      title: 'Bok 13',
-      author: 'Hans Hansen',
-      reviews: 300,
-      view_rating: 4.5,
-      year: 2009,
-      genre: 'Fiction',
-    },
-    {
-      title: 'Bok 14',
-      author: 'Hans Hansen',
-      reviews: 300,
-      view_rating: 4.5,
-      year: 2009,
-      genre: 'Fiction',
-    },
-    {
-      title: 'Bok 15',
-      author: 'Hans Hansen',
-      reviews: 300,
-      view_rating: 4.5,
-      year: 2009,
-      genre: 'Fiction',
-    },
-  ];
+  const {loading, error, data} = useQuery(GET_ALL_BOOKS);
+  if (loading) return <Loading />;
+  if (error) return <Error />;
+
   return (
     <SafeAreaView style={styles.mainWrapper}>
       <ScrollView style={styles.scrollView}>
-        {books.map(book => (
-          <TouchableOpacity onPress={() => navigation.navigate('Book', {book})}>
-            <View style={styles.bookContainer} key={book.title}>
-              <Text style={styles.headerText}>{book.title}</Text>
-              <Text style={styles.subHeaderText}>{book.author}</Text>
-            </View>
-          </TouchableOpacity>
-        ))}
+        {data &&
+          data.allBooks.map(book => (
+            <TouchableOpacity onPress={() => navigation.navigate('Book', book.id)} key={book.id}>
+              <View style={styles.bookContainer}>
+                <Text style={styles.headerText} key={book.name}>
+                  {book.name}
+                </Text>
+                <Text style={styles.subHeaderText} key={book.author.name}>
+                  {book.author.name}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          ))}
       </ScrollView>
     </SafeAreaView>
   );
