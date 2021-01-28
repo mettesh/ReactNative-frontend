@@ -74,10 +74,12 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontSize: 30,
+    textAlign: 'center',
     color: theme.colors.white,
   },
   subHeaderText: {
     fontSize: 15,
+    textAlign: 'center',
     color: theme.colors.white,
   },
 });

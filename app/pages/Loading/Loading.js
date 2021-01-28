@@ -1,11 +1,11 @@
 import React from 'react';
-import {SafeAreaView, StyleSheet, Text} from 'react-native';
+import {SafeAreaView, StyleSheet, ActivityIndicator} from 'react-native';
 import theme from '../../assets/theme';
 
 const Loading = () => {
   return (
     <SafeAreaView style={styles.mainWrapper}>
-      <Text style={styles.text}>Laster . .</Text>
+      <ActivityIndicator size="large" color={theme.colors.orange} />
     </SafeAreaView>
   );
 };
